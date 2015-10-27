@@ -12,7 +12,7 @@
     - plugin
 
 - name: Get jenkins cli
-  get_url: url="http://{{ jenkins_host_name }}:{{ jenkins_port }}/{{ jenkins_cli_path }}" dest=~/
+  get_url: url={{ jenkins_cli_url }} dest={{ jenkins_cli_dest }}
   register: result
   until: result.msg.find("Request failed") == -1
   retries: 5
@@ -30,7 +30,7 @@
     - plugin
 
 - name: Install git plugin
-  command: java  -jar jenkins-cli.jar -s http://{{ jenkins_host_name }}:{{ jenkins_port }} install-plugin git
+  command: java  -jar {{ jenkins_cli_dest }} -s http://{{ jenkins_host_name }}:{{ jenkins_port }} install-plugin git
   tags:
     - jenkins
     - plugin

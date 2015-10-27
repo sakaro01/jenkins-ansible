@@ -7,4 +7,5 @@ jenkins_repojitory: http://pkg.jenkins-ci.org/redhat/jenkins.repo
 jenkins_key: http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
 jenkins_host_name: localhost
 jenkins_port: 8080
-jenkins_cli_path:  jnlpJars/jenkins-cli.jar
+jenkins_cli_dest: ~/jenkins-cli.jar
+jenkins_cli_url: http://{{ jenkins_host_name }}:{{ jenkins_port }}/jnlpJars/jenkins-cli.jar
