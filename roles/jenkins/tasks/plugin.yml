@@ -13,9 +13,15 @@
 
 - name: Get jenkins cli
   get_url: url="http://{{ jenkins_host_name }}:{{ jenkins_port }}/{{ jenkins_cli_path }}" dest=~/
+  register: result
+  until: result.msg.find("Request failed") == -1
+  retries: 5
+  delay:10
   tags:
     - jenkins
     - plugin
+
+- debug: var=result
 
 - name: Wait for updates/default.json to exist
   wait_for: path=/var/lib/jenkins/updates/default.json timeout=180
@@ -30,7 +36,7 @@
     - plugin
 
 - name: Restart jenkins
-  command: curl http://{{ jenkins_host_name }}:{{ jenkins_port }}/safeRestart/
+  command: java -jar {{ jenkins_cli_dest }} -s http://{{ jenkins_host_name }}:{{ jenkins_port }} safe-restart
   tags:
     - jenkins
     - plugin
