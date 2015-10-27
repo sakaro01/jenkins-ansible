@@ -1,6 +1,6 @@
 ---
-- name: Wait for port 8080 availability
-  wait_for: port=8080 timeout=60
+- name: Wait for port {{ jenkins_port }} availability
+  wait_for: port={{ jenkins_port }} timeout=60
   tags:
     - jenkins
     - plugin
@@ -12,7 +12,7 @@
     - plugin
 
 - name: Get jenkins cli
-  get_url: url="http://{{ localhost }}:8080/{{ jenkins_cli_dir }}" dest=~/
+  get_url: url="http://{{ jenkins_host_name }}:{{ jenkins_port }}/{{ jenkins_cli_path }}" dest=~/
   tags:
     - jenkins
     - plugin
@@ -24,13 +24,13 @@
     - plugin
 
 - name: Install git plugin
-  command: java  -jar jenkins-cli.jar -s http://{{ localhost }}:8080 install-plugin git
+  command: java  -jar jenkins-cli.jar -s http://{{ jenkins_host_name }}:{{ jenkins_port }} install-plugin git
   tags:
     - jenkins
     - plugin
 
 - name: Restart jenkins
-  command: curl http://{{ localhost }}:8080/safeRestart/
+  command: curl http://{{ jenkins_host_name }}:{{ jenkins_port }}/safeRestart/
   tags:
     - jenkins
     - plugin
