@@ -1,0 +1,9 @@
+---
+openjdk_items:
+  - java-1.7.0-openjdk
+  - java-1.7.0-openjdk-devel
+
+jenkins_repojitory: http://pkg.jenkins-ci.org/redhat/jenkins.repo
+jenkins_key: http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+localhost: localhost
+jenkins_cli_dir:  jnlpJars/jenkins-cli.jar
