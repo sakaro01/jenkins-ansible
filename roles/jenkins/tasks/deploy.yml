@@ -20,7 +20,7 @@
     - deploy
 
 - name: Import jenkins key
-  rpm_key: state=latest key={{ jenkins_key }}
+  rpm_key: state=present key={{ jenkins_key }}
   tags:
     - jenkins
     - deploy
