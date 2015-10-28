@@ -6,4 +6,4 @@
   service: name=jenkins state=started
 
 - name: restart jenkins
-  service: name=jenkins state=restart
+  command: java -jar {{ jenkins_cli_dest }} -s http://{{ jenkins_host_name }}:{{ jenkins_port }} safe-restart
