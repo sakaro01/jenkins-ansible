@@ -16,7 +16,7 @@
   register: result
   until: result.msg.find("Request failed") == -1
   retries: 5
-  delay:10
+  delay: 10
   tags:
     - jenkins
     - plugin
