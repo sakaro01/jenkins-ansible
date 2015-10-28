@@ -31,7 +31,7 @@
 
 - name: Install git plugin
   command: java  -jar {{ jenkins_cli_dest }} -s http://{{ jenkins_host_name }}:{{ jenkins_port }} install-plugin git
-  notify: Restart jenkins
+  notify: restart jenkins
   tags:
     - jenkins
     - plugin
