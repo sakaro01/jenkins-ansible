@@ -1,6 +1,6 @@
 ---
 - name: Stop jenkins
-  service: name=jenkins state=stoped
+  service: name=jenkins state=stopped
   tags:
     - jenkins
     - deploy
