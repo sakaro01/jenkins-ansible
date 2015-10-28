@@ -24,7 +24,7 @@
 - debug: var=result
 
 - name: Wait for {{ jenkins_updates_json_path }} to exist
-  wait_for: {{ jenkins_updates_json_path }} timeout=180
+  wait_for: path={{ jenkins_updates_json_path }} timeout=180
   tags:
     - jenkins
     - plugin
