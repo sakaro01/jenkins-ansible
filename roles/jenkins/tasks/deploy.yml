@@ -12,7 +12,6 @@
     - jenkins
     - deploy
 
-
 - name: Get jenkins repository
   get_url: url={{ jenkins_repojitory }} dest={{ yum_repojitory_path }}
   tags:

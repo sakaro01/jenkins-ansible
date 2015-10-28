@@ -31,12 +31,7 @@
 
 - name: Install git plugin
   command: java  -jar {{ jenkins_cli_dest }} -s http://{{ jenkins_host_name }}:{{ jenkins_port }} install-plugin git
-  tags:
-    - jenkins
-    - plugin
-
-- name: Restart jenkins
-  command: java -jar {{ jenkins_cli_dest }} -s http://{{ jenkins_host_name }}:{{ jenkins_port }} safe-restart
+  notify: Restart jenkins
   tags:
     - jenkins
     - plugin
