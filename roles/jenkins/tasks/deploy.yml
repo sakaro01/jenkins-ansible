@@ -1,6 +1,6 @@
 ---
-- name: Stop jenkins
-  service: name=jenkins state=stopped
+- name: Wait for port {{ jenkins_port }} availability
+  waif_for: port={{ jenkins_port }} timeout=60
   tags:
     - jenkins
     - deploy

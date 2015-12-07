@@ -1,10 +1,4 @@
 ---
-- name: Wait for port {{ jenkins_port }} availability
-  wait_for: port={{ jenkins_port }} timeout=60
-  tags:
-    - jenkins
-    - plugin
-
 - name: Install git
   yum: name=git state=latest update_cache=yes
   tags:
@@ -31,7 +25,12 @@
 
 - name: Install git plugin
   command: java  -jar {{ jenkins_cli_dest }} -s http://{{ jenkins_host_name }}:{{ jenkins_port }} install-plugin git
+  register: git_plugin_installed_result
+  until: git_plugin_installed_result.stderr == ""
+  retries: 5
+  delay: 10
   notify: restart jenkins
   tags:
     - jenkins
     - plugin
+
