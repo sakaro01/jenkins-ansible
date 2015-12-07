@@ -1,6 +1,6 @@
 ---
 - name: Wait for port {{ jenkins_port }} availability
-  waif_for: port={{ jenkins_port }} timeout=60
+  wait_for: port={{ jenkins_port }} timeout=60
   tags:
     - jenkins
     - deploy
