@@ -5,3 +5,6 @@
   roles:
     - common
     - jenkins
+
+  environment:
+    http_proxy: {{ http_proxy }} 
