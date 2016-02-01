@@ -1,19 +1,10 @@
 ---
-
-- hosts: all
-  sudo: yes
-  vars_prompt:
-  - name: "user"
-    prompt: "Please enter run user (default root)"
-    private: no
-    default: "root"
-    when: user in undefined
-  user: "{{ user }}"
+- hosts: jenkins
+  become: yes
+  become_user: "{{ user }}"
   roles:
     - common
     - jenkins
-  vars:
-    proxy_env:
-      http_proxy: ""
-      https_proxy: ""
-  environment: proxy_env 
+  environment: "{{ proxy_env }}" 
+
+
